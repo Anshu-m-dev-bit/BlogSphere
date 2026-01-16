@@ -85,6 +85,7 @@ BlogSphere/
 │── package.json
 │── README.md
 ---
+```
 ### ⚠️ Important Note (Appwrite Limitation)
 
 - Currently, blog images are **not visible in the post preview cards**.  
