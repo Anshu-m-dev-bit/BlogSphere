@@ -33,22 +33,25 @@ export default function Post() {
 
   if (!post) {
     return (
-      <div className="min-h-[calc(100vh-160px)] flex items-center justify-center text-indigo-300">
+      <div className="max-w-6xl mx-auto flex items-center justify-center text-indigo-300">
         Loading post...
       </div>
     )
   }
 
   return (
-    <div className="min-h-[calc(100vh-160px)] py-8 bg-gradient-to-br from-blue-950 via-indigo-950 to-slate-900">
+    <div className="min-h-[calc(100vh-160px)] py-8 bg-gradient-to-br from-sky-100 via-blue-100 to-indigo-100 border border-blue-300/40 bg-gradient-to-br dark:from-blue-950 dark:via-indigo-950 dark:to-slate-900 border dark:border-indigo-800/40">
       <Container>
 
         {/* OUTER CARD */}
         <div className="
-          max-w-4xl mx-auto
-          h-[calc(100vh-200px)]
-          bg-indigo-950/70
-          border border-indigo-800/40
+          max-w-7xl mx-auto px-4
+          h-[calc(100vh-1px)]
+          bg-cyan-50
+          dark:bg-indigo-950/70
+          border dark:border-indigo-800/40
+          text-gray-900
+          dark:text-gray-100
           rounded-2xl
           shadow-xl
           flex flex-col
@@ -58,25 +61,25 @@ export default function Post() {
           {/* HEADER (FIXED) */}
           <div className="
             flex items-center justify-between
-            px-6 py-4
-            border-b border-indigo-800/40
-            bg-indigo-950
+            px-8 py-6 bg-cyan-50 border-cyan-200/40
+            border-b dark:border-indigo-800/40
+            dark:bg-indigo-950
             shrink-0
           ">
-            <h1 className="text-2xl font-bold text-indigo-100">
+            <h1 className="text-2xl font-bold dark:text-indigo-100 text-gray-700">
               {post.title}
             </h1>
 
             {isAuthor && (
               <div className="flex gap-2">
                 <Link to={`/edit-post/${post.$id}`}>
-                  <Button className="bg-indigo-600 hover:bg-indigo-700">
+                  <Button className="bg-cyan-500 hover:bg-cyan-750 dark:bg-indigo-600 hover:dark:bg-indigo-700">
                     Edit
                   </Button>
                 </Link>
                 <Button
                   onClick={deletePost}
-                  className="bg-red-600 hover:bg-red-700"
+                  className="bg-yellow-400 hover:bg-yellow-500 dark:bg-red-600 hover:dark:bg-red-700"
                 >
                   Delete
                 </Button>
@@ -88,7 +91,7 @@ export default function Post() {
           <div className="
             flex-1
             overflow-y-auto
-            px-6 py-6
+            px-10 py-8
             space-y-6
           ">
 
@@ -102,7 +105,8 @@ export default function Post() {
                   max-h-[420px]
                   object-cover
                   rounded-xl
-                  border border-indigo-800/40
+                  border-blue-300/40
+                  border dark:border-indigo-800/40
                 "
               />
             )}
@@ -111,7 +115,8 @@ export default function Post() {
             <div className="
               prose prose-invert
               max-w-none
-              text-indigo-100
+              text-gray-900
+              dark:text-indigo-100
             ">
               {parse(post.content)}
             </div>
