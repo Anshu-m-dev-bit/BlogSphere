@@ -17,7 +17,6 @@ function SignUp() {
   
     try {
       const account = await authService.createAccount(data)
-  
       if (account) {
         const userData = await authService.getCurrentUser()
         dispatch(storeLogin(userData))

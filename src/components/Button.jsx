@@ -3,7 +3,7 @@ import React from 'react'
 function Button({
     children,
     type = 'button',
-    bgColor = 'bg-green-300 dark:bg-blue-600',
+    bgColor = 'bg-green-300 dark:bg-indigo-500',
     textColor = 'text-gray-500 dark:text-white',
     className = '',
     ...props
@@ -19,6 +19,8 @@ function Button({
         text-sm font-semibold
         transition-all duration-300
         shadow-md shadow-blue-900/20
+        hover:bg-green-400
+        hover:dark:bg-indigo-600
         hover:shadow-lg hover:shadow-blue-900/30
         active:scale-95
         focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2

@@ -14,20 +14,14 @@ export class AuthService {
 
     async createAccount({ email, password, name }) {
         try {
-          const newUser = await this.account.create(
-            ID.unique(),
-            email,
-            password,
-            name
-          )
-      
+          const newUser = await this.account.create(ID.unique(), email, password, name)
+          await this.account.createEmailPasswordSession(email, password)
+
           return newUser
         } catch (error) {
-          if (error.code === 409) {
+          if (error?.code === 409) {
             throw new Error('Account already exists')
           }
-      
-          console.log('Error occurred while creating an account:', error)
           throw error
         }
       }      
