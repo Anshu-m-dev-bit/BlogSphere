@@ -6,6 +6,9 @@
 BlogSphere focuses on scalability, maintainability, and user experience, making it a strong foundation for a full-stack web application.
 
 ---
+## 🌐 Live Website
+👉 [https://blogsphere.appwrite.network/all-posts]
+
 
 ## 🚀 Features
 - User authentication (sign up, login, logout)
