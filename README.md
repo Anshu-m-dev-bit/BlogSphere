@@ -7,7 +7,7 @@ BlogSphere focuses on scalability, maintainability, and user experience, making 
 
 ---
 ## 🌐 Live Website
-👉 [https://blogsphere.appwrite.network/all-posts]
+👉 [Click here](https://blogsphere.appwrite.network/)
 
 
 ## 🚀 Features
