@@ -105,6 +105,7 @@ BlogSphere/
 │── package.json
 │── README.md
 
+```
 ---
 
 ## 📚 What This Project Demonstrates

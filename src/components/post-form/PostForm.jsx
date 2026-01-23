@@ -35,7 +35,8 @@ export default function PostForm({ post }) {
 
       {/* Cannot delete Images from Cloudinary from frontend */}
       // if (file) {
-      //   services.deleteImage(post.thumbnail)
+      //    services.deleteImage(post.thumbnail)
+      //   console.log(file)
       // }
 
       const dbPost = await services.updatePosts(post.$id, {
