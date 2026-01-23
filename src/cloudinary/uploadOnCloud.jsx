@@ -1,6 +1,8 @@
+import { conf } from "../conf/conf";
+
 async function uploadImageToCloudinary(data) {
-    const cloudName = "dpdvsyzlq";
-    const uploadPreset = "container";
+    const cloudName = conf.cloudName;
+    const uploadPreset = conf.uploadPreset;
   
     const formData = new FormData();
     formData.append("file", data);
@@ -15,10 +17,10 @@ async function uploadImageToCloudinary(data) {
         }
       );
   
-      const result = response.url;
+      const result = await response.json();
       console.log("Upload success:", result);
   
-      return result; // contains public_id, secure_url, etc.
+      return result.url; 
     } catch (error) {
       console.error("Upload failed:", error);
       throw error;

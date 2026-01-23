@@ -24,21 +24,23 @@ export default function PostForm({ post }) {
 
   const navigate = useNavigate()
   const userData = useSelector((state) => state.auth.userData)
+  const [imagePreview, setImagePreview] = React.useState(post?.thumbnail || null);
+
 
   const submit = async (data) => {
-    console.log(data)
     if (post) {
       const file = data.image?.[0]
         ? await services.uploadImage(data.image[0])
         : null
 
-      if (file) {
-        services.deleteImage(post.thumbnail)
-      }
+      {/* Cannot delete Images from Cloudinary from frontend */}
+      // if (file) {
+      //   services.deleteImage(post.thumbnail)
+      // }
 
       const dbPost = await services.updatePosts(post.$id, {
         ...data,
-        thumbnail: file ? file.$id : post.thumbnail,
+        thumbnail: file ? file : post.thumbnail,
       })
 
       if (dbPost) navigate(`/post/${post.$id}`)
@@ -47,7 +49,9 @@ export default function PostForm({ post }) {
 
       if (data.image?.length > 0) {
         const file = await services.uploadImage(data.image[0])
-        if (file) fileId = file.$id
+        if (file) {
+          fileId = file
+        }
       }
 
       const dbPost = await services.createPosts({
@@ -81,6 +85,16 @@ export default function PostForm({ post }) {
     })
     return () => subscription.unsubscribe()
   }, [watch, slugTransform, setValue])
+
+  const watchImage = watch('image'); // react-hook-form watcher
+
+  useEffect(() => {
+    if (watchImage && watchImage.length > 0) {
+      const file = watchImage[0];
+      setImagePreview(URL.createObjectURL(file));
+    }
+  }, [watchImage]);
+
 
   return (
     <form
@@ -166,12 +180,32 @@ export default function PostForm({ post }) {
         shadow-lg
       "
     >
-      <Input
-        label="Thumbnail"
-        type="file"
-        className="text-indigo-300 file:text-indigo-200 cursor-pointer"
-        {...register('image')}
-      />
+      <div
+        className="
+          dark:bg-indigo-950/70
+          border dark:border-indigo-800/40
+          rounded-2xl
+          p-6
+          shadow-lg
+          space-y-3
+        "
+      >
+        <Input
+          label="Thumbnail"
+          type="file"
+          className="text-indigo-300 file:text-indigo-200 cursor-pointer"
+          {...register('image')}
+        />
+
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="Preview"
+            className="w-full max-h-40 object-cover rounded-xl border border-blue-300/40 dark:border-indigo-800/40 mt-2"
+          />
+        )}
+      </div>
+
     </div>
 
     {/* Status + Submit */}

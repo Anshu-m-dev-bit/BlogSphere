@@ -6,15 +6,17 @@
 BlogSphere focuses on scalability, maintainability, and user experience, making it a strong foundation for a full-stack web application.
 
 ---
+
 ## 🌐 Live Website
 👉 [Click here](https://blogsphere.appwrite.network/)
 
+---
 
 ## 🚀 Features
 - User authentication (sign up, login, logout)
 - Create, edit, and delete blog posts
 - Rich text editor for writing blog content
-- Image upload and storage
+- **Image upload and storage via Cloudinary**
 - Clean and responsive UI
 - Smooth client-side navigation
 - Secure backend services using BaaS
@@ -24,13 +26,19 @@ BlogSphere focuses on scalability, maintainability, and user experience, making 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React.js** – Component-based UI development
-- **JavaScript (ES6+)** – Application logic
-- **HTML5 & CSS3** – Structure and styling
-- **Tailwind CSS** *(if applicable)* – Utility-first responsive styling
+- **React.js** – Component-based UI development  
+- **JavaScript (ES6+)** – Application logic  
+- **HTML5 & CSS3** – Structure and styling  
+- **Tailwind CSS** *(if applicable)* – Utility-first responsive styling  
 
 ### Backend (BaaS)
-- **Appwrite** – Authentication, database, and file storage
+- **Appwrite** – Authentication, database, and file storage  
+
+### Image Storage & Hosting
+- **Cloudinary** – Handles image uploads, processing, and delivery via CDN  
+  - Unsigned uploads allow users to upload images directly from the frontend  
+  - Provides automatic image resizing and optimization  
+  - Generates secure URLs for use in the application  
 
 ---
 
@@ -45,31 +53,40 @@ Appwrite is used as the backend to handle:
 
 ---
 
+### ☁️ Cloudinary
+- Provides **fast and scalable image hosting**  
+- Handles **automatic resizing, optimization, and CDN delivery**  
+- Integrated via **unsigned upload presets**, allowing images to be uploaded directly from React forms  
+- Enables live image previews before submitting blog posts  
+- Supports future enhancements like zooming and advanced image transformations
+
+---
+
 ### ✍️ TinyMCE
-- Provides a powerful **rich text editor** for writing blogs
-- Supports formatting, headings, links, lists, and media
+- Provides a powerful **rich text editor** for writing blogs  
+- Supports formatting, headings, links, lists, and media  
 - Improves the overall writing experience significantly
 
 ---
 
 ### 🧾 react-hook-form
-- Efficient form state management and validation
-- Minimizes re-renders for better performance
+- Efficient form state management and validation  
+- Minimizes re-renders for better performance  
 - Used for authentication forms and blog creation/editing forms
 
 ---
 
 ### 🧭 react-router-dom
-- Enables client-side routing
-- Allows smooth navigation between pages without full reloads
+- Enables client-side routing  
+- Allows smooth navigation between pages without full reloads  
 - Improves user experience and application flow
 
 ---
 
 ### 📚 Other Supporting Tools
-- **@appwrite/sdk** – JavaScript SDK to interact with Appwrite services
-- **dotenv** – Securely manages environment variables
-- **Vite / CRA** – Fast development environment and optimized builds
+- **@appwrite/sdk** – JavaScript SDK to interact with Appwrite services  
+- **dotenv** – Securely manages environment variables  
+- **Vite / CRA** – Fast development environment and optimized builds  
 
 ---
 
@@ -79,7 +96,7 @@ BlogSphere/
 │── src/
 │   ├── components/       # Reusable UI components
 │   ├── pages/            # Page-level components
-│   ├── services/         # Appwrite service logic
+│   ├── services/         # Appwrite & Cloudinary service logic
 │   ├── hooks/            # Custom React hooks
 │   ├── App.jsx           # Root component
 │   ├── main.jsx          # Application entry point
@@ -87,19 +104,6 @@ BlogSphere/
 │── .env
 │── package.json
 │── README.md
----
-```
-### ⚠️ Important Note (Appwrite Limitation)
-
-- Currently, blog images are **not visible in the post preview cards**.  
-- This is due to a limitation of **Appwrite’s free tier**, which does not support the `getFilePreview` feature required for rendering images in preview mode.
-
-**Additional Details:**
-- Image uploads and storage work correctly.
-- The limitation only affects preview rendering.
-- This behavior is expected under the free plan.
-
-To address this limitation and improve scalability, the project is planned to be migrated to **Firebase** or **Supabase** in a future update.
 
 ---
 
@@ -114,13 +118,11 @@ To address this limitation and improve scalability, the project is planned to be
 ---
 
 ## 🔮 Future Enhancements
-- Migration to **Firebase** or **Supabase**
 - Image preview support in blog cards
 - Comment system
 - Like and bookmark functionality
 - Role-based access control
 - SEO optimization
-- Dark mode support
 
 ---
 

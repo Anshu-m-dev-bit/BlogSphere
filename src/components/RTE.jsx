@@ -57,12 +57,14 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
       <div className="overflow-hidden rounded-xl border shadow-sm dark:bg-indigo-950 bg-cyan-100">
 
         <div className="flex justify-end px-3 py-2 border-b">
-          <button
-            onClick={toggleEditorTheme}
-            className="text-sm px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer"
-          >
-            {editorTheme === 'light' ? '🌙 Dark' : '☀️ Light'}
-          </button>
+        <button
+          type="button"
+          onClick={toggleEditorTheme}
+          className="text-sm px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer"
+        >
+          {editorTheme === 'light' ? '🌙 Dark' : '☀️ Light'}
+        </button>
+
         </div>
 
         <Controller

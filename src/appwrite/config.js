@@ -1,7 +1,6 @@
 import { Client, Databases, Query, Storage, ID } from 'appwrite'
 import { conf } from '../conf/conf'
 import uploadImageToCloudinary from '../cloudinary/uploadOnCloud'
-import retrieveFromCloud from '../cloudinary/retrieveFromCloud'
 
 export class Services{
     client = new Client()
@@ -89,12 +88,7 @@ export class Services{
 
     async uploadImage(file) {
         try {
-            // return uploadImageToCloudinary(file)
-            return await this.bucket.createFile(
-                conf.bucketId,
-                ID.unique(),
-                file,
-            )
+            return uploadImageToCloudinary(file)
         } catch (error) {
             console.log('Error occured while uploading your thumbnail: ', error)
         }
@@ -111,16 +105,6 @@ export class Services{
             console.log('Error occured while deleting your thumbnail: ', error)
             return false
         }
-    }
-
-    getFilePreview(fileId) {
-        //return retrieveFromCloud(fileId)
-        const temp = this.bucket.getFilePreview(
-            conf.bucketId,
-            fileId
-        )
-        // console.log('File preview URL: ', temp);
-        return temp;
     }
 }
 

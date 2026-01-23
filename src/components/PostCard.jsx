@@ -29,7 +29,7 @@ function PostCard({ $id, title, thumbnail }) {
         <div className="relative h-48 w-full overflow-hidden">
           {thumbnail ? (
             <img
-              src={services.getFilePreview(thumbnail)}
+              src={thumbnail}
               alt={title}
               className="
                 h-full w-full

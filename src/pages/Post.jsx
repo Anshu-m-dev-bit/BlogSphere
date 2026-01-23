@@ -10,6 +10,8 @@ export default function Post() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const userData = useSelector((state) => state.auth.userData)
+  const [imgWidth, setImgWidth] = useState(300)
+
 
   const isAuthor = post && userData ? post.userId === userData.$id : false
 
@@ -96,20 +98,70 @@ export default function Post() {
           ">
 
             {/* IMAGE (scrolls with content) */}
-            {post.thumbnail && (
-              <img
-                src={services.getFilePreview(post.thumbnail)}
-                alt={post.title}
-                className="
-                  w-full
-                  max-h-[420px]
-                  object-cover
-                  rounded-xl
-                  border-blue-300/40
-                  border dark:border-indigo-800/40
-                "
-              />
-            )}
+            {/* IMAGE WITH PROPER ZOOM */}
+{post.thumbnail && (
+  <div className="mx-auto space-y-3">
+
+    <div className="relative mx-auto" style={{ width: imgWidth }}>
+      <img
+        src={post.thumbnail.replace(
+          "/upload/",
+          `/upload/w_${imgWidth},c_fill/`
+        )}
+        alt={post.title}
+        className="
+          w-full
+          rounded-xl
+          border border-blue-300/40
+          dark:border-indigo-800/40
+        "
+      />
+
+      {/* ZOOM BUTTONS */}
+      <div className="
+        absolute bottom-3 right-3
+        flex gap-2
+        bg-white/80 dark:bg-indigo-900/80
+        backdrop-blur
+        p-1.5 rounded-lg
+        shadow-lg
+      ">
+        <button
+          onClick={() =>
+            setImgWidth((w) => Math.min(w + 100, 1000))
+          }
+          className="
+            w-8 h-8
+            flex items-center justify-center
+            rounded-md
+            bg-indigo-600 text-white
+            hover:bg-indigo-700
+            active:scale-95
+          "
+        >
+          +
+        </button>
+
+        <button
+          onClick={() =>
+            setImgWidth((w) => Math.max(w - 100, 300))
+          }
+          className="
+            w-8 h-8
+            flex items-center justify-center
+            rounded-md
+            bg-indigo-600 text-white
+            hover:bg-indigo-700
+            active:scale-95
+          "
+        >
+          −
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
             {/* CONTENT */}
             <div className="
