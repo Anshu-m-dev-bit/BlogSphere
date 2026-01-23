@@ -26,6 +26,7 @@ export default function PostForm({ post }) {
   const userData = useSelector((state) => state.auth.userData)
 
   const submit = async (data) => {
+    console.log(data)
     if (post) {
       const file = data.image?.[0]
         ? await services.uploadImage(data.image[0])
@@ -146,8 +147,10 @@ export default function PostForm({ post }) {
         label="Slug"
         placeholder="your-post-slug"
         className="
-          text-indigo-100
-          placeholder:text-indigo-500
+          text-gray-800
+          dark:text-indigo-100
+          placeholder:text-green-300
+          placeholder:dark:text-indigo-500
         "
         {...register('slug')}
       />
@@ -190,10 +193,13 @@ export default function PostForm({ post }) {
           border-indigo-700
         "
         options={['inactive', 'active']}
-        {...register('status')}
+        {...register('status', {
+          setValueAs: (value) => value === 'active',
+        })}
       />
 
       <Button
+      type='submit'
         className="
           w-full
           dark:bg-indigo-600
